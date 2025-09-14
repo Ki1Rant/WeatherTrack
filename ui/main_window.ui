@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WeatherTracker</class>
+ <widget class="QMainWindow" name="WeatherTracker">
+  <property name="windowModality">
+   <enum>Qt::WindowModality::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>755</width>
+    <height>605</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    border-radius: 15px;
+    background-color: #ffffff;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+    border-radius: 15px;
+    background-color: #737feb;
+}</string>
+   </property>
+   <widget class="QFrame" name="gridFrame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>341</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>340</y>
+       <width>211</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	border-radius: 15px;
+	background-color: #98a1f5;
+	font-size: 140px;
+
+	text-align: left;
+    padding: 0px;
+    margin: 0px;
+	color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string>15°</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>271</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="verticalFrame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>751</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>0</y>
+       <width>154</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #98a1f5;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    padding: 8px 15px;
+    color: #0c0c0d;
+}
+
+QComboBox::drop-down {
+    border-left: 0px solid #0c0c0d;
+}
+
+QComboBox::down-arrow {
+    border-top: 4px solid #0c0c0d;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #white;
+    border: 1px solid #4a5568;
+	border-radius: 6px;
+	outline: 0px;
+}
+
+QComboBox QAbstractItemView::item {
+    background-color: #3d4163;
+	border: 0px;
+    border-radius: 6px;
+	color: white;
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Moscow</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Volgograd</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>60</y>
+      <width>361</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>0</y>
+       <width>281</width>
+       <height>461</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	border-radius: 15px;
+	background-color: #98a1f5;
+	border: 1px solid #020203;
+	font-size: 17px;
+	color: #25252b;
+		
+
+	text-align: left;
+    padding: 0px;                   
+    margin: 0px;
+}</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
