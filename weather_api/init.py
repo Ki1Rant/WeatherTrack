@@ -1,5 +1,5 @@
-from providers import OpenWeatherMapProvider
-from cache import WeatherCache
+from weather_api.providers import OpenWeatherMapProvider
+from weather_api.cache import WeatherCache
 
 class WeatherServices:
     def __init__(self):
@@ -10,7 +10,6 @@ class WeatherServices:
         cached_data = self.cache.get(city)
         if cached_data:
             return cached_data
-        print("hello")
         data = self.provider.get_weather(city)
 
         self.cache.set(city, data)
