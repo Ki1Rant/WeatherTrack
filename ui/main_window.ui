@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>755</width>
-    <height>605</height>
+    <height>599</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -157,17 +157,19 @@ QComboBox QAbstractItemView::item {
 	border-radius: 15px;
 	background-color: #98a1f5;
 	border: 1px solid #020203;
-	font-size: 17px;
+	font-size: 20px;
 	color: #25252b;
 		
+	font-weight: bold;
+	font-style: italic;
 
-	text-align: left;
-    padding: 0px;                   
-    margin: 0px;
+	qproperty-alignment: 'AlignLeft';
+    padding: 5px 10px;                   
+    margin: 2px;
 }</string>
      </property>
      <property name="text">
-      <string/>
+      <string>Text</string>
      </property>
     </widget>
    </widget>

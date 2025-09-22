@@ -1,5 +1,5 @@
 import sys
-from PyQt6 import uic
+from PyQt6 import QtCore
 from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from weather_api.init import WeatherServices
@@ -68,13 +68,14 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
 
     def display_weather(self, weather_data):
         try:
-            self.ui.Temp.setText(f"{int(weather_data['temperature'])}°C")
+            self.ui.Temp.setText(f"{int(weather_data['temperature'])}°")
             self.ui.otherStat.setText(f"""
-            Ощущается как:{int(weather_data['feels_like'])}
-            На улице:{weather_data['description']}
-            Влажность:{weather_data['humidity']}
-            Давление:{weather_data['pressure']}
-            Скорость ветра:{weather_data['wind_speed']}
+Ощущается как: {int(weather_data['feels_like'])}°C
+На улице:
+{weather_data['description']}
+Влажность: {weather_data['humidity']}
+Давление: {weather_data['pressure']}
+Скорость ветра: {weather_data['wind_speed']} м\с
             """)
         except AttributeError as e:
             print(f"Ошибка обновления интерфейса: {e}")
