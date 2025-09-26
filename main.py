@@ -1,10 +1,12 @@
 import sys
 from PyQt6 import QtCore
+from PyQt6 import QtGui
 from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from weather_api.init import WeatherServices
 from ui.ui_main_window import Ui_WeatherTracker
 
+#Вызов информации
 class WeatherThread(QThread, WeatherServices):
     weather_result = pyqtSignal(dict)
     error_occured = pyqtSignal(str)
@@ -31,14 +33,15 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
         self.weather_thread = None
 
         self.setup_city_combo()
+        self.load_weather()
         self.ui.CityBox.currentIndexChanged.connect(self.on_city_changed)
 
+    #Установка набора городов
     def setup_city_combo(self):
         popular_cities = [
             ("Москва", "Moscow"),
             ("Санкт-Петербург", "Saint Petersburg"),
             ("Новосибирск", "Novosibirsk"),
-            ("Екатеринбург", "Yekaterinburg"),
             ("Казань", "Kazan"),
             ("Нижний Новгород", "Nizhny Novgorod"),
             ("Волгоград", "Volgograd")
@@ -53,7 +56,7 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
         if index != -1:
             self.load_weather()
 
-
+    #Загрузка информации с помощью вспомогательного класса WeatherThread
     def load_weather(self):
         city_name = self.ui.CityBox.currentText()
 
@@ -70,27 +73,47 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
         try:
             self.ui.Temp.setText(f"{int(weather_data['temperature'])}°")
             self.ui.otherStat.setText(f"""
-Ощущается как: {int(weather_data['feels_like'])}°C
-На улице:
-{weather_data['description']}
-Влажность: {weather_data['humidity']}
-Давление: {weather_data['pressure']}
-Скорость ветра: {weather_data['wind_speed']} м\с
+    Ощущается как: {int(weather_data['feels_like'])}°C
+
+    На улице:
+        {weather_data['description']}
+
+    Влажность: {weather_data['humidity']}%
+
+    Давление: {weather_data['pressure']} мм рт. ст.
+
+    Скорость ветра: {weather_data['wind_speed']} м\с
             """)
+
+            self.graphic_weather(weather_data['description'])
         except AttributeError as e:
             print(f"Ошибка обновления интерфейса: {e}")
             print("Проверьте имена виджетов в UI файле")
 
+    #Установка png изображения погоды
+    def graphic_weather(self, description):
+        weather_map = {
+            "ясно": "resourses/sun.png",
+            "облачно": "resourses/cloudSun.png",
+            "пасмурно": "resourses/cloud.png",
+            "небольшой дождь": "resourses/sunCloudRain.png",
+            "дождь": "resourses/rain.png",
+            "ливень": "resourses/rain.png",
+            "снег": "resourses/snow.png",
+            "гроза": "resourses/storm.png",
+            "град": "resourses/hail.png"
+        }
 
+        new_pixmap = QtGui.QPixmap(weather_map[description])
+        self.ui.iconWeather.setPixmap(new_pixmap)
+        self.ui.iconWeather.setScaledContents(True)
 
 def main():
     app = QApplication(sys.argv)
 
-    # Создание и отображение главного окна
     window = WeatherApp()
     window.show()
 
-    # Запуск основного цикла
     sys.exit(app.exec())
 
 

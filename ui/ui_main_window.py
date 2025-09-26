@@ -7,11 +7,11 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-from PyQt6 import  QtCore
+
 from PyQt6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+from PyQt6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
@@ -22,7 +22,7 @@ class Ui_WeatherTracker(object):
     def setupUi(self, WeatherTracker):
         if not WeatherTracker.objectName():
             WeatherTracker.setObjectName(u"WeatherTracker")
-        WeatherTracker.setWindowModality(QtCore.Qt.WindowModality.NonModal)
+        WeatherTracker.setWindowModality(Qt.WindowModality.NonModal)
         WeatherTracker.resize(755, 599)
         WeatherTracker.setStyleSheet(u"QMainWindow {\n"
 "    border-radius: 15px;\n"
@@ -52,7 +52,7 @@ class Ui_WeatherTracker(object):
 "}")
         self.iconWeather = QLabel(self.gridFrame)
         self.iconWeather.setObjectName(u"iconWeather")
-        self.iconWeather.setGeometry(QRect(40, 10, 271, 261))
+        self.iconWeather.setGeometry(QRect(40, 10, 281, 281))
         self.verticalFrame = QFrame(self.centralwidget)
         self.verticalFrame.setObjectName(u"verticalFrame")
         self.verticalFrame.setGeometry(QRect(0, 10, 751, 41))
@@ -95,7 +95,7 @@ class Ui_WeatherTracker(object):
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.otherStat = QLabel(self.frame)
         self.otherStat.setObjectName(u"otherStat")
-        self.otherStat.setGeometry(QRect(50, 0, 281, 461))
+        self.otherStat.setGeometry(QRect(20, 0, 331, 461))
         self.otherStat.setStyleSheet(u"QLabel {\n"
 "	border-radius: 15px;\n"
 "	background-color: #98a1f5;\n"

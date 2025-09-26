@@ -68,8 +68,8 @@
       <rect>
        <x>40</x>
        <y>10</y>
-       <width>271</width>
-       <height>261</height>
+       <width>281</width>
+       <height>281</height>
       </rect>
      </property>
      <property name="text">
@@ -146,9 +146,9 @@ QComboBox QAbstractItemView::item {
     <widget class="QLabel" name="otherStat">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>20</x>
        <y>0</y>
-       <width>281</width>
+       <width>331</width>
        <height>461</height>
       </rect>
      </property>
