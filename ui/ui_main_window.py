@@ -16,22 +16,25 @@ from PyQt6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PyQt6.QtWidgets import (QApplication, QComboBox, QFrame, QLabel,
-    QMainWindow, QSizePolicy, QWidget)
+    QMainWindow, QSizePolicy, QTabWidget, QWidget)
 
 class Ui_WeatherTracker(object):
     def setupUi(self, WeatherTracker):
         if not WeatherTracker.objectName():
             WeatherTracker.setObjectName(u"WeatherTracker")
-        WeatherTracker.setWindowModality(Qt.WindowModality.NonModal)
+        WeatherTracker.setWindowModality(Qt.WindowModality.WindowModal)
+        WeatherTracker.setEnabled(True)
         WeatherTracker.resize(755, 599)
+        WeatherTracker.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         WeatherTracker.setStyleSheet(u"QMainWindow {\n"
-"    border-radius: 15px;\n"
-"    background-color: #ffffff;\n"
-"}")
+"    background-color: #737feb;\n"
+"    color: blue;\n"
+"}\n"
+"")
+        WeatherTracker.setTabShape(QTabWidget.TabShape.Rounded)
         self.centralwidget = QWidget(WeatherTracker)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QWidget {\n"
-"    border-radius: 15px;\n"
 "    background-color: #737feb;\n"
 "}")
         self.gridFrame = QFrame(self.centralwidget)
@@ -118,7 +121,7 @@ class Ui_WeatherTracker(object):
     # setupUi
 
     def retranslateUi(self, WeatherTracker):
-        WeatherTracker.setWindowTitle(QCoreApplication.translate("WeatherTracker", u"MainWindow", None))
+        WeatherTracker.setWindowTitle(QCoreApplication.translate("WeatherTracker", u"Weather Tracker", None))
         self.Temp.setText("")
         self.iconWeather.setText("")
         self.otherStat.setText(QCoreApplication.translate("WeatherTracker", u"Text", None))

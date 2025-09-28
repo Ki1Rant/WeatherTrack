@@ -1,5 +1,4 @@
 import sys
-from PyQt6 import QtCore
 from PyQt6 import QtGui
 from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtWidgets import QApplication, QMainWindow
@@ -26,9 +25,11 @@ class WeatherThread(QThread, WeatherServices):
 class WeatherApp(QMainWindow, Ui_WeatherTracker):
     def __init__(self):
         super().__init__()
-
-        self.ui = Ui_WeatherTracker()
-        self.ui.setupUi(self)
+        try:
+            self.ui = Ui_WeatherTracker()
+            self.ui.setupUi(self)
+        except Exception as e:
+            print(e)
 
         self.weather_thread = None
 
@@ -58,16 +59,18 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
 
     #Загрузка информации с помощью вспомогательного класса WeatherThread
     def load_weather(self):
-        city_name = self.ui.CityBox.currentText()
+        try:
+            city_name = self.ui.CityBox.currentText()
 
-        if self.weather_thread and self.weather_thread.isRunning():
-             self.weather_thread.terminate()
-             self.weather_thread.wait()
+            if self.weather_thread and self.weather_thread.isRunning():
+                self.weather_thread.terminate()
+                self.weather_thread.wait()
 
-        self.weather_thread = WeatherThread(city_name)
-        self.weather_thread.weather_result.connect(self.display_weather)
-        self.weather_thread.start()
-
+            self.weather_thread = WeatherThread(city_name)
+            self.weather_thread.weather_result.connect(self.display_weather)
+            self.weather_thread.start()
+        except Exception as e:
+            print(f"Ошибка обновления интерфейса: {e}")
 
     def display_weather(self, weather_data):
         try:
@@ -80,12 +83,12 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
 
     Влажность: {weather_data['humidity']}%
 
-    Давление: {weather_data['pressure']} мм рт. ст.
+    Давление: {weather_data['pressure']} милибар
 
-    Скорость ветра: {weather_data['wind_speed']} м\с
+    Скорость ветра: {weather_data['wind_speed']} км\ч
             """)
 
-            self.graphic_weather(weather_data['description'])
+            self.graphic_weather(weather_data['description'].lower())
         except AttributeError as e:
             print(f"Ошибка обновления интерфейса: {e}")
             print("Проверьте имена виджетов в UI файле")
@@ -94,7 +97,9 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
     def graphic_weather(self, description):
         weather_map = {
             "ясно": "resourses/sun.png",
+            "переменная облачность": "resourses/cloudSun.png",
             "облачно": "resourses/cloudSun.png",
+            "облачно с прояснениями": "resourses/cloudSun.png",
             "пасмурно": "resourses/cloud.png",
             "небольшой дождь": "resourses/sunCloudRain.png",
             "дождь": "resourses/rain.png",
@@ -111,10 +116,15 @@ class WeatherApp(QMainWindow, Ui_WeatherTracker):
 def main():
     app = QApplication(sys.argv)
 
+    sys.setrecursionlimit(5000)
     window = WeatherApp()
     window.show()
 
-    sys.exit(app.exec())
+    try:
+        sys.exit(app.exec())
+    except Exception as e:
+        print(f"Ошибка: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

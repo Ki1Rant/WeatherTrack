@@ -3,7 +3,10 @@
  <class>WeatherTracker</class>
  <widget class="QMainWindow" name="WeatherTracker">
   <property name="windowModality">
-   <enum>Qt::WindowModality::NonModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
   </property>
   <property name="geometry">
    <rect>
@@ -13,19 +16,25 @@
     <height>599</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Weather Tracker</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-    border-radius: 15px;
-    background-color: #ffffff;
-}</string>
+    background-color: #737feb;
+    color: blue;
+}
+</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::TabShape::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">QWidget {
-    border-radius: 15px;
     background-color: #737feb;
 }</string>
    </property>

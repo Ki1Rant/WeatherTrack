@@ -1,3 +1,1 @@
 CACHE_TIMEOUT = 600
-DEFAULT_CITY = "Москва"
-TEMPERATURE_UNIT = "celsius"
